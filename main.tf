@@ -2,16 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-terraform {
-  backend "s3" {
-    bucket         = "mystatebucket90"
-    key            = "s3-bucket/tf.state"
-    region         = "us-east-1"
-    encrypt        =  true
-    dynamodb_table = "tf-state-lock"
-    
-  }
-}
 
 resource "aws_vpc" "this" {
   cidr_block         = var.vpc_config.cidr_block
