@@ -25,3 +25,24 @@ variable "vpc_config" {
     enable_dns_support = optional(bool)
   })
 }
+
+variable "vpc_flow_log_config_defaults" {
+  type = object({
+    log_destination_type = string
+    
+  })
+
+  default = {
+    log_destination_type = "s3"
+  }
+}
+
+variable "vpc_flow_log_config" {
+  type = object({
+    enable_vpc_flow_log = bool
+    vpc_flow_log_name = string
+    s3_log_bucket_name = string
+    log_destination_type = optional(string)
+    traffic_type = string 
+  })
+}
