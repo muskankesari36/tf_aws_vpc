@@ -29,7 +29,7 @@ variable "vpc_config" {
 variable "vpc_flow_log_config_defaults" {
   type = object({
     log_destination_type = string
-    
+
   })
 
   default = {
@@ -39,10 +39,10 @@ variable "vpc_flow_log_config_defaults" {
 
 variable "vpc_flow_log_config" {
   type = object({
-    enable_vpc_flow_log = bool
-    vpc_flow_log_name = string
-    s3_log_bucket_name = string
+    enable_vpc_flow_log  = bool
+    vpc_flow_log_name    = string
+    s3_log_bucket_name   = string
     log_destination_type = optional(string)
-    traffic_type = string 
+    traffic_type         = string
   })
 }

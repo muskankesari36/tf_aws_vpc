@@ -7,15 +7,15 @@ terraform {
     bucket         = "mystatebucket90"
     key            = "s3-bucket/tf.state"
     region         = "us-east-1"
-    encrypt        =  true
+    encrypt        = true
     dynamodb_table = "tf-state-lock"
-    
+
   }
 }
 
 data "aws_s3_bucket" "s3_log_bucket" {
 
-    bucket   = var.vpc_flow_log_config.s3_log_bucket_name
+  bucket = var.vpc_flow_log_config.s3_log_bucket_name
 
 }
 
@@ -33,13 +33,13 @@ resource "aws_vpc" "this" {
 }
 
 resource "aws_flow_log" "aws_vpc_flow_log" {
-  
+
   count = var.vpc_flow_log_config.enable_vpc_flow_log ? 1 : 0
 
-  log_destination = local.bucket_arn
+  log_destination      = local.bucket_arn
   log_destination_type = var.vpc_flow_log_config_defaults.log_destination_type
-  traffic_type = var.vpc_flow_log_config.traffic_type
-  vpc_id = aws_vpc.this.id
+  traffic_type         = var.vpc_flow_log_config.traffic_type
+  vpc_id               = aws_vpc.this.id
   tags = merge({
     Name = var.vpc_flow_log_config.vpc_flow_log_name
   }, var.tags)
