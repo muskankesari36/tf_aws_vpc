@@ -2,15 +2,14 @@ provider "aws" {
   region = var.aws_region
 }
 
-
-data "aws_s3_bucket" "s3_log_bucket" {
+data "aws_s3_bucket" "this" {
 
   bucket = var.vpc_flow_log_config.s3_log_bucket_name
 
 }
 
 locals {
-  bucket_arn = data.aws_s3_bucket.s3_log_bucket.arn
+  bucket_arn = data.aws_s3_bucket.this.arn
 }
 
 resource "aws_vpc" "this" {
@@ -22,7 +21,7 @@ resource "aws_vpc" "this" {
   }, var.tags)
 }
 
-resource "aws_flow_log" "aws_vpc_flow_log" {
+resource "aws_flow_log" "this" {
 
   count = var.vpc_flow_log_config.enable_vpc_flow_log ? 1 : 0
 
