@@ -1,6 +1,6 @@
-# provider "aws" {
-#   region = var.aws_region
-# }
+provider "aws" {
+  region = var.aws_region
+}
 
 data "aws_s3_bucket" "this" {
 
