@@ -41,7 +41,7 @@ variable "vpc_flow_log_config" {
   type = object({
     enable_vpc_flow_log  = bool
     vpc_flow_log_name    = string
-    s3_log_bucket_name   = string
+    s3_bucket_arn  = string
     log_destination_type = optional(string)
     traffic_type         = string
   })
