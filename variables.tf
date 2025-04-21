@@ -11,10 +11,12 @@ variable "vpc_defaults" {
   type = object({
     instance_tenancy   = string
     enable_dns_support = bool
+    enable_dns_hostnames = bool
   })
   default = {
     instance_tenancy   = "default"
     enable_dns_support = true
+    enable_dns_hostnames = false
   }
 }
 variable "vpc_config" {
@@ -22,6 +24,7 @@ variable "vpc_config" {
     vpc_name           = string
     cidr_block         = string
     instance_tenancy   = optional(string)
+    enable_dns_hostnames = bool
     enable_dns_support = optional(bool)
   })
 }
